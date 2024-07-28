@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Checker</title>
+    <style>
+         #strength {
+            font-weight: bold;
+        }
+        .strength-weak {
+            color: red;
+        }
+        .strength-medium {
+            color: orange;
+        }
+        .strength-strong {
+            color: green;
+        }
+      body {
+    font-family: Arial, sans-serif;
+    background-color: pink;
+    text-align: center;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: 20px;
+}
+
+button {
+    width: 90%;
+    background-color: blue;
+    color: white;
+
+}
+input{
+    width:90%;
+
+}
+        </style>
+</head>
+<body>
+    <h1>Password Strength Checker</h1>
+    <div class="container">
+        <h3>Enter your password</h3>
+        <input type="password" id="password" >
+        <br>
+        <button onclick="Checker()"> Check Strength </button>
+         <p id="strength"></p>
+    </div>
+</body>
+<script>
+    function Checker() {
+            const password = document.getElementById('password').value;
+            const strengthIndicator = document.getElementById('strength');
+            let strength = 'Weak';
+            let strengthClass = 'strength-weak';
+            if (password.length > 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password)) {
+                strength = 'Strong';
+                strengthClass = 'strength-strong';
+            } else if (password.length > 6 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password)) {
+                strength = 'Medium';
+                strengthClass = 'strength-medium';
+            }
+            strengthIndicator.textContent = `Strength: ${strength}`;
+            strengthIndicator.className = strengthClass;
+}
+    </script>
+</html>
